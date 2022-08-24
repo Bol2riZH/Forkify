@@ -1,4 +1,4 @@
-import View from './View';
+import View from './View.js';
 import icons from 'url:/src/img/icons.svg';
 
 class PaginationView extends View {
@@ -7,7 +7,6 @@ class PaginationView extends View {
   addHandlerClick(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--inline');
-      console.log(btn);
       if (!btn) return;
 
       const goToPage = +btn.dataset.goto;
@@ -22,7 +21,6 @@ class PaginationView extends View {
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
-    console.log(numPages);
 
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
@@ -30,7 +28,7 @@ class PaginationView extends View {
         <button data-goto="${
           curPage + 1
         }" class="btn--inline pagination__btn--next">
-          <span>${curPage + 1}</span>
+          <span>Page ${curPage + 1}</span>
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-right"></use>
           </svg>
@@ -46,7 +44,7 @@ class PaginationView extends View {
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-left"></use>
           </svg>
-          <span>${curPage - 1}</span>
+          <span>Page ${curPage - 1}</span>
         </button>
       `;
     }
@@ -59,20 +57,19 @@ class PaginationView extends View {
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-left"></use>
           </svg>
-          <span>${curPage - 1}</span>
+          <span>Page ${curPage - 1}</span>
         </button>
-        
         <button data-goto="${
           curPage + 1
         }" class="btn--inline pagination__btn--next">
-          <span>${curPage + 1}</span>
+          <span>Page ${curPage + 1}</span>
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-right"></use>
           </svg>
         </button>
       `;
     }
-    // Page 1, and there are no page
+    // Page 1, and there are no other page
     return '';
   }
 }
