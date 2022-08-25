@@ -10,9 +10,12 @@ import 'regenerator-runtime/runtime';
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-    if (!id) return;
 
+    if (!id) return;
     recipeView.renderSpinner();
+
+    // 0) Update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
 
     // 1) loading recipe
     await model.loadRecipe(id);
@@ -58,8 +61,8 @@ const controlServings = function (newServings) {
   // Update the recipe servings (in state)
   model.updateServings(newServings);
 
-  // Update the view
-  recipeView.render(model.state.recipe);
+  // Update the recipe view
+  recipeView.update(model.state.recipe);
 };
 
 const init = function () {
