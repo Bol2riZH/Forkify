@@ -11,7 +11,7 @@ import 'regenerator-runtime/runtime';
 import { MODAL_CLOSE_SEC } from './config.js';
 
 const newFeature = function () {
-  console.log('this is the new feature');
+  console.log('Welcome to this APP !');
 };
 
 const controlRecipes = async function () {
